@@ -140,35 +140,38 @@ var fight = function(enemyNames) {
   
         }          
        
-        //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-        var damage = randomNumber(playerAttack - 3, playerAttack);
-        enemyHealth =Math.max (0, enemyHealth - damage);
+        // generate random damage value based on player's attack power
+        var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+
+        enemy.health = Math.max(0, enemy.health - damage);
       // Log a resulting message to the console so we know that it worked.
       console.log(
-        playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining."
+        playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining."
       );
     // check enemy's health
-    if (enemyHealth <= 0) {
-        window.alert(enemyNames + " has died!");
+    if (enemy.health <= 0) {
+        window.alert(enemy.name + " has died!");
     // award player money for winning
-      playerMoney = playerMoney + 20;
+      playerInfo.money = playerInfo.money + 20;
         break;
       } else {
-        window.alert(enemyNames + " still has " + enemyHealth + " health left.");
+        window.alert(enemy.name + " still has " + enemy.health + " health left.");
       }
     
-      // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-      var damage = randomNumber(enemyAttack - 3, enemyAttack);
-      playerHealth = Math.max(0, playerHealth - damage);
+      var damage = randomNumber(enemy.attack - 3, enemy.attack);
+
+      playerInfo.health = Math.max(0, playerInfo.health - damage);
+
+
       // Log a resulting message to the console so we know that it worked.
       console.log(
-        enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+        enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining."
       );
       
     // check player's health
-    if (playerHealth <= 0) {
-        console.log (playerName + " has " + playerHealth + " health left");
-        window.alert(playerName + " has died!");
+    if (playerInfo.health <= 0) {
+        console.log (playerInfo.name + " has " + playerInfo.health + " health left");
+        window.alert(playerInfo.name + " has died!");
         break;
         
       } 
